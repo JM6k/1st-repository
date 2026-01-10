@@ -1,0 +1,18 @@
+# Build artifacts
+tictactoe/build/
+*.o
+*.out
+*.exe
+
+# IDE files
+.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled executables
+tictactoe
