@@ -15,4 +15,4 @@ tictactoe/build/
 Thumbs.db
 
 # Compiled executables
-tictactoe
+tictactoe/build/tictactoe

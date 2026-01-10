@@ -2,12 +2,15 @@
 
 A C++ implementation of Tic-Tac-Toe with a graphical user interface built using SFML (Simple and Fast Multimedia Library).
 
-## Features (Planned)
+## Features
 - ✅ GUI interface with SFML
-- ✅ Play against an unbeatable AI (Minimax algorithm)
+- ✅ Play against an unbeatable AI (Minimax algorithm with alpha-beta pruning)
 - ✅ Score tracking across multiple games
 - ✅ Choose whether to play as X or O
-- ✅ Colored and styled output
+- ✅ Colored and styled graphics
+- ✅ Hover effects on valid moves
+- ✅ Winning line highlighting
+- ✅ Smooth menu system
 
 ## Requirements
 - C++17 or later
@@ -52,30 +55,55 @@ g++ -std=c++17 -Wall -Wextra -I./include src/*.cpp -o build/tictactoe -lsfml-gra
 ```
 tictactoe/
 ├── src/               # Source files
-│   └── main.cpp       # Entry point (currently a test program)
-├── include/           # Header files (to be added)
-├── build/             # Compiled binaries
+│   ├── main.cpp       # Entry point
+│   ├── Board.cpp      # Game board logic
+│   ├── AI.cpp         # Minimax AI implementation
+│   ├── Game.cpp       # Game state management
+│   ├── Player.cpp     # Player and score tracking
+│   └── GUI.cpp        # SFML graphics and rendering
+├── include/           # Header files
+│   ├── Board.hpp      # Board class definition
+│   ├── AI.hpp         # AI class definition
+│   ├── Game.hpp       # Game class definition
+│   ├── Player.hpp     # Player class definition
+│   └── GUI.hpp        # GUI class definition
+├── build/             # Compiled binaries (not in git)
 ├── Makefile           # Build configuration
 └── README.md          # This file
 ```
 
-## Development Status
+## Implementation Details
 
-### Completed
-- ✅ SFML installation and setup
-- ✅ Project structure created
-- ✅ Build system (Makefile) configured
-- ✅ VS Code configuration (IntelliSense, tasks, debugging)
-- ✅ Basic SFML test program
+### Board Class (Board.hpp/cpp)
+- 3x3 grid representation using `std::array`
+- Move validation and tracking
+- Win condition checking (rows, columns, diagonals)
+- Draw detection
 
-### To Do
-- [ ] Implement Board class
-- [ ] Implement AI with Minimax algorithm
-- [ ] Implement Game logic
-- [ ] Implement GUI rendering
-- [ ] Add score tracking
-- [ ] Add main menu
-- [ ] Polish and styling
+### AI Class (AI.hpp/cpp)
+- **Minimax algorithm** with alpha-beta pruning for optimal play
+- Evaluates all possible game states
+- Guarantees the AI never loses (best case: win, worst case: draw)
+- Depth-based scoring for faster wins
+
+### Game Class (Game.hpp/cpp)
+- Game state management (menu, playing, game over)
+- Turn management between human and AI
+- Score tracking across multiple games
+- Player creation and management
+
+### GUI Class (GUI.hpp/cpp)
+- SFML-based rendering
+- Interactive menu for choosing X or O
+- Visual board with colored X's and O's
+- Hover effects on valid moves
+- Winning line highlighting
+- Game over overlay with results
+
+### Player Class (Player.hpp/cpp)
+- Player information (name, symbol, type)
+- Win/loss/draw tracking
+- Score persistence across games
 
 ## VS Code Integration
 
@@ -89,10 +117,12 @@ The project includes VS Code configuration files:
 - **Clean Build** - Remove build artifacts
 - **Run Tic-Tac-Toe** - Build and run the game
 
-## Controls (To be implemented)
-- Mouse click to place X or O
-- ESC to close window
-- Menu for selecting X or O at game start
+## Controls
+- **Menu Screen**: Click top half to play as X, bottom half to play as O
+- **Game Screen**: Click on empty cells to place your move
+- **Game Over**: Click anywhere to play again
+- **ESC**: Return to menu (or quit if at menu)
+- **R**: Restart game after game over
 
 ## License
 Free to use and modify.
